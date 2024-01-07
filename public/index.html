@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,25 @@
     <link rel="icon" href="ico.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <title>DRESSCODE</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
 </head>
+
 <body>
-    <div class="coming-soon-container">
-        <h1>Coming Soon</h1>
-        <p>We are working hard to bring something awesome. Stay tuned!</p>
+    <div class="container">
+        <label for="idInput">Ingresa un ID:</label>
+        <input type="text" id="userId">
+        <button id="searchButton">Buscar</button>
+        <div id="resultado"></div>
     </div>
+
+    <div id="player"></div>
+
+    <iframe src="https://drive.google.com/file/d/1jMnGfA1W0JNV5mJz-6c21yStYYkrhrIn/preview" width="640" height="480" allow="autoplay" allowfullscreen="true"></iframe>
+    <a href="https://drive.google.com/uc?export=download&id=1jMnGfA1W0JNV5mJz-6c21yStYYkrhrIn" download>
+        <button>Descargar Video</button>
+    </a>
+    <script type="module" src="app.js"></script>
 </body>
+
 </html>
