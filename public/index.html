@@ -10,23 +10,39 @@
     <title>DRESSCODE</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@300;400;500;600;700;800&display=swap">
 </head>
 
 <body>
-    <div class="container">
-        <label for="idInput">Ingresa un ID:</label>
-        <input type="text" id="userId">
-        <button id="searchButton">Buscar</button>
+    <div id="loginDiv" class="container">
+        <h1 class="title">DRESSCODE</h1>
+        <label for="idInput">Ingresa un ID</label><br>
+        <input class="input" type="text" maxlength="20" id="userId" placeholder="Ej: asUh523e2ja12sdO3"
+            value="fANcz53oNII9kJYtdjTA"><br>
+        <button id="searchButton">Entrar</button>
         <div id="resultado"></div>
     </div>
 
-    <div id="player"></div>
+    <div id="contentDiv" style="display: none;">
+        <div class="container2">
+            <div id="player"></div>
+            <iframe id="videoIframeElem" src="" allow="autoplay" allowfullscreen="true"></iframe> <br>
+            <a id="videoDownloadBtn" href="" download>
+                <button>Descargar Video</button>
+            </a>
+        </div>
+    </div>
 
-    <iframe src="https://drive.google.com/file/d/1jMnGfA1W0JNV5mJz-6c21yStYYkrhrIn/preview" width="640" height="480" allow="autoplay" allowfullscreen="true"></iframe>
-    <a href="https://drive.google.com/uc?export=download&id=1jMnGfA1W0JNV5mJz-6c21yStYYkrhrIn" download>
-        <button>Descargar Video</button>
-    </a>
-    <script type="module" src="app.js"></script>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup" class="close-btn">&times;</span>
+            <p id="popupText">Usuario no encontrado</p>
+        </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
 </body>
 
 </html>

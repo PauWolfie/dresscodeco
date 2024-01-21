@@ -22,3 +22,24 @@ p {
     font-size: 1.2em;
     margin-top: 10px;
 }
+
+button {
+    margin-top: 20px;
+    background-color: #000; /* Cambia el color de fondo del botón a negro */
+    color: #ffffff; /* Cambia el color del texto del botón */
+    padding: 10px 20px;
+    border: 1px solid #000; /* Cambia el color del borde del botón a negro */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Añade transiciones suaves */
+}
+
+button:hover {
+    background-color: #ffffff; /* Cambia el color de fondo del botón al pasar el ratón a blanco */
+    color: #000; /* Cambia el color del texto del botón al pasar el ratón a negro */
+    border-color: #000; /* Cambia el color del borde del botón al pasar el ratón a negro */
+}
+
+.container{
+    text-align: center;
+}

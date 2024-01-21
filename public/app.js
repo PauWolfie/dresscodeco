@@ -31,28 +31,76 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 
-// Function to get documents from a collection
-async function getDocumentsFromCollection() {
+var popupClosed = false;
+
+async function checkUserId() {
     const videoId = document.getElementById('userId').value;
+    popupClosed = false;
+
+    if (videoId == "" || videoId.length != 20) {
+        togglePopup();
+        return;
+    }
     const docRef = doc(db, 'videos', videoId);
+    const docSnap = await getDoc(docRef);
 
-    try {
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            console.log('Documento encontrado:', docSnap.data());
-            displayVideo();
-        } else {
-            alert('Any video found')
-        }
-    } catch (error) {
-        alert("Unexpected error, try later!");
+    if (docSnap.exists()) {
+        displayVideo(docSnap.data().driveId);
+    } else {
+        togglePopup();
     }
 }
 
-const searchButton = document.getElementById('searchButton');
-searchButton.addEventListener('click', getDocumentsFromCollection);
+function displayVideo(video) {
+    document.getElementById("loginDiv").style.display = "none";
+    document.getElementById("contentDiv").style.display = "block";
 
-function displayVideo() {
-    console.log('display Video');
+    console.log('display Video: ' + video);
+    document.getElementById("videoIframeElem").src = video + "/preview";
+    document.getElementById("videoDownloadBtn").href = "https://drive.google.com/uc?export=download&id=" + getVideoId(video);
 }
+
+function getVideoId(url) {
+    const patronID = /\/file\/d\/([^/]+)/; // Utilizamos una expresión regular para buscar el ID después de "/file/d/"
+    const coincidencia = url.match(patronID);
+
+    if (coincidencia && coincidencia[1]) {
+        return coincidencia[1];
+    } else {
+        // Manejar el caso en el que no se encuentra un ID válido
+        console.error("No se pudo extraer el ID del video de la URL proporcionada.");
+        return null;
+    }
+};
+
+function togglePopup() {
+    if (popupClosed) return;
+
+    var popup = document.getElementById("popup");
+
+    if (popup.style.opacity === "0" || popup.style.opacity === "") {
+        // Mostrar el popup con fade in
+        popup.style.display = "block";
+        setTimeout(function () {
+            popup.style.opacity = "1";
+        }, 100); // Pequeño retraso para asegurar que la transición se aplique correctamente
+    } else {
+        // Ocultar el popup si ya está visible
+        popup.style.opacity = "0";
+        popupClosed = true;
+
+        // Ocultar completamente el popup después de la animación
+        setTimeout(function () {
+            popup.style.display = "none";
+        }, 500);
+    }
+
+    setTimeout(function () {
+        togglePopup();
+        popupClosed = true;
+    }, 5000);
+}
+
+// Button listeners:
+document.getElementById("searchButton").addEventListener("click", checkUserId);
+document.getElementById("close-popup").addEventListener("click", togglePopup);

@@ -1,4 +1,9 @@
-/*http://www.dresscode-es.com/*/
+/* http://www.dresscode-es.com/ */
+.title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+}
+
 body {
     font-family: 'Work Sans', sans-serif;
     margin: 0;
@@ -11,15 +16,137 @@ body {
     color: #fff;
 }
 
-.coming-soon-container {
-    text-align: center;
-}
-
 h1 {
     font-size: 2em;
+    color: #333333; /* Cambia el color del título */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #555555; /* Cambia el color de las etiquetas */
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #c2c2c2; /* Cambia el color del borde del input */
+    border-radius: 5px;
+}
+
+button {
+    background-color: #000; /* Cambia el color de fondo del botón a negro */
+    color: #ffffff; /* Cambia el color del texto del botón */
+    padding: 10px 20px;
+    border: 1px solid #000; /* Cambia el color del borde del botón a negro */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Añade transiciones suaves */
+}
+
+button:hover {
+    background-color: #ffffff; /* Cambia el color de fondo del botón al pasar el ratón a blanco */
+    color: #000; /* Cambia el color del texto del botón al pasar el ratón a negro */
+    border-color: #000; /* Cambia el color del borde del botón al pasar el ratón a negro */
+}
+
+#resultado {
+    margin-top: 20px;
+    color: #333333; /* Cambia el color del texto del resultado */
 }
 
 p {
     font-size: 1.2em;
     margin-top: 10px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    max-width: 300px;
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0; /* Establece la opacidad inicial a 0 */
+    transition: opacity 0.5s ease-in-out; /* Añade una transición de opacidad */
+}
+
+.popup-content {
+    padding: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Desktop */
+@media (min-width: 800px) {
+    .container {
+        text-align: center;
+        background-color: #ffffff; /* Cambia el color de fondo del contenedor */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    iframe {
+        border: none;
+        border-radius: 13px;
+        width: 110vh;
+        height: 70vh;
+        margin-bottom: 10px;
+    }
+
+    .container2 {
+        margin: 30px;
+        text-align: center;
+        background-color: #ffffff; /* Cambia el color de fondo del contenedor */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Smartphone */
+@media (max-width: 800px) {
+    .container {
+        margin: 30px;
+        text-align: center;
+        background-color: #ffffff; /* Cambia el color de fondo del contenedor */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    iframe {
+        border: none;
+        border-radius: 13px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .container2 {
+        margin: 30px;
+        text-align: center;
+        background-color: #ffffff; /* Cambia el color de fondo del contenedor */
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 }

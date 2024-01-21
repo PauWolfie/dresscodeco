@@ -31,6 +31,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 
+var clipboardValue;
+
 // Function to add a document to the videoIds collection
 async function addVideoIdToCollection() {
     const videoId = document.getElementById('videoId').value;
@@ -42,11 +44,41 @@ async function addVideoIdToCollection() {
     }
 
     const videoNode = {
-        vimeoId: videoId,
+        driveId: cleanUrlData(videoId),
     }
     const newDocumentRef = await addDoc(videoIdsCollection, videoNode);
 
+    clipboardValue = newDocumentRef.id;
     document.getElementById('documentIdRef').innerHTML = 'The user id is: ' + newDocumentRef.id;
+    document.getElementById('clipboard').style.display = 'initial';
 }
 
+function cleanUrlData(url) {
+    const ultimaBarraIndex = url.lastIndexOf('/');
+    const urlBase = url.substring(0, ultimaBarraIndex + 1);
+    return urlBase;
+}
+
+function copyToClipboard() {
+    // Create a temporary textarea element
+    var textarea = document.createElement("textarea");
+  
+    // Set the value of the textarea to the text you want to copy
+    textarea.value = clipboardValue;
+  
+    // Append the textarea to the document
+    document.body.appendChild(textarea);
+  
+    // Select the text in the textarea
+    textarea.select();
+  
+    // Execute the copy command
+    document.execCommand("copy");
+  
+    // Remove the textarea from the document
+    document.body.removeChild(textarea);
+  }
+  
+
 document.getElementById('searchButton').addEventListener('click', addVideoIdToCollection);
+document.getElementById('clipboard').addEventListener('click', copyToClipboard);
