@@ -18,13 +18,7 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDjVvMXfZdPt7NXHQLyWx-UgvJFoBPfv3s",
-    authDomain: "dresscode-co.firebaseapp.com",
-    projectId: "dresscode-co",
-    storageBucket: "dresscode-co.appspot.com",
-    messagingSenderId: "326997647745",
-    appId: "1:326997647745:web:182d65878e58299ffa0880",
-    measurementId: "G-RLSQ0SBGR7"
+    // token
 };
 
 // Initialize Firebase
