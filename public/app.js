@@ -16,16 +16,18 @@ import {
     updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
 
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js"
+
 // Your web app's Firebase configuration
-const firebaseConfig = {
-    // token
-};
+const firebaseConfig = { };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 export const db = getFirestore();
 
 var popupClosed = false;
+var videoToShow = "";
 
 async function checkUserId() {
     const videoId = document.getElementById('userId').value;
@@ -39,19 +41,20 @@ async function checkUserId() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-        displayVideo(docSnap.data().driveId);
+        videoToShow = docSnap.data().driveId;
+        signInWithGoogle();
     } else {
         togglePopup();
     }
 }
 
-function displayVideo(video) {
+function displayVideo() {    
     document.getElementById("loginDiv").style.display = "none";
     document.getElementById("contentDiv").style.display = "block";
 
-    console.log('display Video: ' + video);
-    document.getElementById("videoIframeElem").src = video + "/preview";
-    document.getElementById("videoDownloadBtn").href = "https://drive.google.com/uc?export=download&id=" + getVideoId(video);
+    console.log('display Video: ' + videoToShow);
+    document.getElementById("videoIframeElem").src = videoToShow + "/preview";
+    document.getElementById("videoDownloadBtn").href = "https://drive.google.com/uc?export=download&id=" + getVideoId(videoToShow);
 }
 
 function getVideoId(url) {
@@ -94,6 +97,18 @@ function togglePopup() {
         popupClosed = true;
     }, 5000);
 }
+
+// Function to handle Google Sign-In using Firebase Authentication
+const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+        const result = await signInWithPopup(auth, provider);
+        displayVideo();
+    } catch (error) {
+        console.error('Google Sign-In failed:', error.message);
+        window.location.reload();
+    }
+};
 
 // Button listeners:
 document.getElementById("searchButton").addEventListener("click", checkUserId);

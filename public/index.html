@@ -13,7 +13,9 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@300;400;500;600;700;800&display=swap">
-</head>
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+    </head>
 
 <body>
     <div id="loginDiv" class="container">
@@ -25,7 +27,7 @@
     </div>
 
     <div id="contentDiv" style="display: none;">
-        <div class="container2">
+        <div id="contentContainer" class="container2">
             <div id="player"></div>
             <iframe id="videoIframeElem" src="" allow="autoplay" allowfullscreen="true"></iframe> <br>
             <a id="videoDownloadBtn" href="" download>
